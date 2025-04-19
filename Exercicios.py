@@ -24,11 +24,42 @@ verificar_dados(0, 10.00)
 # Os dados incluem medições de temperatura. Você precisa classificar cada leitura 
 # como 'Baixa', 'Normal' ou 'Alta'. Considerando que:
 
+def classificar_temperatura(temperatura) :#valores abaixo de 10 são considerados "Baixos"
+    if temperatura < 10:
+        return "baixa"
+    
+    elif 10 <= temperatura <= 25: #valores enttre 10 e 25 são "Normal"
+         return "normal"
+    
+    else:                       #valores acima de 25 são"Alta"
+        return "alta"
+
+
+print(classificar_temperatura(-10))
+print(classificar_temperatura(15))
+print(classificar_temperatura(30))
+
+
 ### Exercício 3: Filtragem de Logs por Severidade
 # Você está analisando logs de uma aplicação e precisa filtrar mensagens 
 # com severidade 'ERROR'. Dado um registro de log em formato de dicionário 
 # como `log = {'timestamp': '2021-06-23 10:00:00', 'level': 'ERROR', 'message': 'Falha na conexão'}`, 
 # escreva um programa que imprima a mensagem se a severidade for 'ERROR'.
+
+def filtrar_log(log):
+    if log['level'] == 'Error':
+         print(log['message'])
+
+log_exemplo = {
+    'timestamp' : '2021-06-23 10:00:00',
+    'level' : 'Error',
+    'message':'falha na conexão'
+}
+
+filtrar_log(log_exemplo)
+
+
+
 
 ### Exercício 4: Validação de Dados de Entrada
 # Antes de processar os dados de usuários em um sistema de recomendação, 
@@ -36,23 +67,72 @@ verificar_dados(0, 10.00)
 # fornecido um email válido. Escreva um programa que valide essas condições 
 # e imprima "Dados de usuário válidos" ou o erro específico encontrado.
 
+
+
+
+
+
+
+
+
+
 ### Exercício 5: Detecção de Anomalias em Dados de Transações
 # Você está trabalhando em um sistema de detecção de fraude e precisa identificar 
 # transações suspeitas. Uma transação é considerada suspeita se o valor for superior 
 # a R$ 10.000 ou se ocorrer fora do horário comercial (antes das 9h ou depois das 18h). 
 # Dada uma transação como `transacao = {'valor': 12000, 'hora': 20}`, verifique se ela é suspeita.
 
+
+
+
+
+
+
+
+
+
 ### Exercício 6. Contagem de Palavras em Textos
 # Objetivo:** Dado um texto, contar quantas vezes cada palavra única aparece nele.
+
+
+
+
+
+
+
+
 
 ### Exercício 7. Normalização de Dados
 # Objetivo:** Normalizar uma lista de números para que fiquem na escala de 0 a 1.
 
+
+
+
+
+
+
 ### Exercício 8. Filtragem de Dados Faltantes
 # Objetivo:** Dada uma lista de dicionários representando dados de usuários, filtrar aqueles que têm um campo específico faltando
 
+
+
+
+
+
+
+
+
 ### Exercício 9. Extração de Subconjuntos de Dados
 # Objetivo:** Dada uma lista de números, extrair apenas aqueles que são pares.
+
+
+
+
+
+
+
+
+
 
 ### Exercício 10. Agregação de Dados por Categoria
 # Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
