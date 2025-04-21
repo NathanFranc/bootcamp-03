@@ -67,10 +67,27 @@ filtrar_log(log_exemplo)
 # fornecido um email válido. Escreva um programa que valide essas condições 
 # e imprima "Dados de usuário válidos" ou o erro específico encontrado.
 
+def validar_usuario(usuario):
+    # Validação de idade
+    if not 18 <= usuario['idade'] <= 65:
+        print("Erro: Idade deve estar entre 18 e 65 anos")
+        return
+    
+    # Validação básica de email (contém @ e .)
+    if '@' not in usuario['email'] or '.' not in usuario['email'].split('@')[-1]:
+        print("Erro: Email inválido")
+        return
+    
+    print("Dados de usuário válidos")
 
+usuario1 = {'idade': 25, 'email': 'user@example.com'}
+validar_usuario(usuario1)  # Válido
 
+usuario2 = {'idade': 17, 'email': 'user@example.com'}
+validar_usuario(usuario2)  # Erro de idade
 
-
+usuario3 = {'idade': 30, 'email': 'invalido.com'}
+validar_usuario(usuario3)  # Erro de email
 
 
 
