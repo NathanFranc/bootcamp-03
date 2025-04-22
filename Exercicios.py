@@ -99,11 +99,27 @@ validar_usuario(usuario3)  # Erro de email
 # a R$ 10.000 ou se ocorrer fora do horário comercial (antes das 9h ou depois das 18h). 
 # Dada uma transação como `transacao = {'valor': 12000, 'hora': 20}`, verifique se ela é suspeita.
 
+def transação_suspeita(transação) :
+    valor_suspeito = transação['valor'] > 10000
+    hora_suspeita = transação['hora'] < 9 or transação['hora'] > 18
+    
+    if valor_suspeito or hora_suspeita :
+        return "transação suspeita"
+    else :
+        return "transaçâo normal"
+    
+transação1 = {'valor' : 12000, 'hora' : 20}  # suspeita (valor + hotario)
+print(transação_suspeita(transação1))
 
+transação2 = {'valor' : 5000, 'hora' : 20}   # suspeita (apenas horario)
+print(transação_suspeita(transação2))
 
+transaçâo3 = {'valor' : 12000, 'hora' : 12}  # suspeita (apenas valor)
+print(transação_suspeita(transaçâo3))
 
-
-
+transaçâo4 = {'valor' : 5000, 'hora' : 12}  # suspeita (normal)
+print(transação_suspeita(transaçâo4))
+        
 
 
 
@@ -112,7 +128,21 @@ validar_usuario(usuario3)  # Erro de email
 # Objetivo:** Dado um texto, contar quantas vezes cada palavra única aparece nele.
 
 
-
+def contar_palavras_simples(texto):
+    texto = texto.lower()
+    for char in '.,!?;:':
+        texto = texto.replace(char, ' ')
+    
+    palavras = texto.split()
+    contagem = {}
+    
+    for palavra in palavras:
+        if palavra in contagem:
+            contagem[palavra] += 1
+        else:
+            contagem[palavra] = 1
+    
+    return contagem
 
 
 
@@ -123,7 +153,23 @@ validar_usuario(usuario3)  # Erro de email
 # Objetivo:** Normalizar uma lista de números para que fiquem na escala de 0 a 1.
 
 
+def normalizar(lista):
+    if not lista:
+        return []
+    
+    min_val = min(lista)
+    max_val = max(lista)
+    
+    # Evita divisão por zero quando todos valores são iguais
+    if min_val == max_val:
+        return [0.0 for _ in lista]
+    
+    return [(x - min_val) / (max_val - min_val) for x in lista]
 
+# Exemplos de uso:
+print(normalizar([10, 20, 30, 40]))  # [0.0, 0.333..., 0.666..., 1.0]
+print(normalizar([5, 5, 5]))         # [0.0, 0.0, 0.0]
+print(normalizar([-1, 0, 1]))        # [0.0, 0.5, 1.0]
 
 
 
@@ -134,7 +180,23 @@ validar_usuario(usuario3)  # Erro de email
 
 
 
+def filtrar_faltantes(usuarios, campo):
+    return [usuario for usuario in usuarios if campo not in usuario]
 
+# Exemplo de uso:
+usuarios = [
+    {'nome': 'Alice', 'idade': 30, 'email': 'alice@example.com'},
+    {'nome': 'Bob', 'idade': 25},  # Faltando 'email'
+    {'email': 'charlie@example.com', 'cidade': 'São Paulo'}  # Faltando 'idade'
+]
+
+# Filtrar usuários sem 'email'
+print(filtrar_faltantes(usuarios, 'email'))  
+# Saída: [{'nome': 'Bob', 'idade': 25}]
+
+# Filtrar usuários sem 'idade'
+print(filtrar_faltantes(usuarios, 'idade'))  
+# Saída: [{'email': 'charlie@example.com', 'cidade': 'São Paulo'}]
 
 
 
@@ -145,7 +207,14 @@ validar_usuario(usuario3)  # Erro de email
 
 
 
+def extrair_pares(lista):
+    return [num for num in lista if num % 2 == 0]
 
+# Exemplos de uso:
+print(extrair_pares([1, 2, 3, 4, 5]))       # Saída: [2, 4]
+print(extrair_pares([-2, -3, 0, 7]))        # Saída: [-2, 0]
+print(extrair_pares([2, 4, 6]))             # Saída: [2, 4, 6]
+print(extrair_pares([]))                    # Saída: []
 
 
 
@@ -153,6 +222,41 @@ validar_usuario(usuario3)  # Erro de email
 
 ### Exercício 10. Agregação de Dados por Categoria
 # Objetivo:** Dado um conjunto de registros de vendas, calcular o total de vendas por categoria.
+
+
+
+
+
+vendas = [
+    {'categoria': 'eletrônicos', 'valor': 1200},
+    {'categoria': 'livros', 'valor': 300},
+    {'categoria': 'eletrônicos', 'valor': 800},
+    {'categoria': 'roupas', 'valor': 450},
+    {'categoria': 'livros', 'valor': 150}
+]
+
+def total_por_categoria(vendas):
+    categorias = {}
+    for venda in vendas:
+        categoria = venda['categoria']
+        valor = venda['valor']
+        if categoria in categorias:
+            categorias[categoria] += valor
+        else:
+            categorias[categoria] = valor
+    return categorias
+
+print(total_por_categoria(vendas))
+
+
+
+# Saída: {'eletrônicos': 2000, 'livros': 450, 'roupas': 450}
+
+
+
+
+
+
 
 ### Exercícios com WHILE
 
