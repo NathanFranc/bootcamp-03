@@ -293,6 +293,16 @@ print("Número válido!")
 
 
 
+pagina_atual = 1
+paginas_totais = 5  
+
+while pagina_atual <= paginas_totais:
+    print(f"Processando página {pagina_atual} de {paginas_totais}")
+  
+    pagina_atual += 1
+
+print("Todas as páginas foram processadas.")
+
 
 
 ### Exercício 14. Tentativas de Conexão
@@ -300,9 +310,34 @@ print("Número válido!")
 
 
 
+tentativas_maximas = 5
+tentativa = 1
+
+while tentativa <= tentativas_maximas:
+    print(f"Tentativa {tentativa} de {tentativas_maximas}")
+
+    if True:  
+        print("Conexão bem-sucedida!")
+        break
+    tentativa += 1
+else:
+    print("Falha ao conectar após várias tentativas.")
 
 
 
 
 ### Exercício 15. Processamento de Dados com Condição de Parada
 # Processar itens de uma lista até encontrar um valor específico que indica a parada.
+
+
+
+itens = [1, 2, 3, "parar", 4, 5]
+
+i = 0
+while i < len(itens):
+    if itens[i] == "parar":
+        print("Parada encontrada, encerrando o processamento.")
+        break
+
+    print(f"Processando item: {itens[i]}")
+    i += 1
